@@ -8,7 +8,7 @@ Select Case When Customer_Age<20 Then "0-20"
        When Customer_Age Between 60 And 70 Then "60-70" When Customer_Age Between 70 And 80 Then "70-80"
        When Customer_Age>80 Then "Above 80" End As Age_Range, Count(*) 
 From bankchurners 
-Where Attrition_Flag = "Attrited Customer" 
+Where Attrition_Flag = "Attrited Customer"
 Group by Age_Range 
 Order by Age_Range;
 
@@ -18,19 +18,20 @@ Select SUM(If(Gender="M",1,"NULL")) As MaleExistingCustomers,
 From bankchurners
 Where Attrition_Flag = "Existing Customer";
 Select SUM(If(Gender="M",1,"NULL")) As MaleAttritedCustomers,
-	   SUM(If(Gender="F",1,"NULL")) As FemaleAttritedCustomers
+	   SUM(If
+	       (Gender = "F",1,"NULL")) As FemaleAttritedCustomers
 From bankchurners
 Where Attrition_Flag = "Attrited Customer";  
 
 /*Distribution of Attrited and Existing Customers based on Dependent Count*/
 Select Dependent_count, Count(*)
 From bankchurners
-Where Attrition_Flag="Existing Customer" 
+Where Attrition_Flag = "Existing Customer" 
 Group by Dependent_count
 Order by Dependent_count;
 Select Dependent_count, Count(*)
 From bankchurners
-Where Attrition_Flag="Attrited Customer" 
+Where Attrition_Flag = "Attrited Customer" 
 Group by Dependent_count
 Order by Dependent_count;
 
